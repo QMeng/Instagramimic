@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4697ABF21ED67DC00E423CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */; };
 		E47C789121E7E14700261012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789021E7E14700261012 /* AppDelegate.swift */; };
 		E47C789321E7E14700261012 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789221E7E14700261012 /* ViewController.swift */; };
 		E47C789621E7E14700261012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789421E7E14700261012 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E47C788D21E7E14700261012 /* Instagramimic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagramimic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47C789021E7E14700261012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E47C789221E7E14700261012 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				E47C789721E7E14800261012 /* Assets.xcassets */,
 				E47C789921E7E14800261012 /* LaunchScreen.storyboard */,
 				E47C789C21E7E14800261012 /* Info.plist */,
+				E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */,
 			);
 			path = Instagramimic;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4697ABF21ED67DC00E423CE /* SignUpViewController.swift in Sources */,
 				E47C789321E7E14700261012 /* ViewController.swift in Sources */,
 				E47C789121E7E14700261012 /* AppDelegate.swift in Sources */,
 			);
