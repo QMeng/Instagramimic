@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E4697ABF21ED67DC00E423CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */; };
+		E4697AC121EEB6B000E423CE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */; };
 		E47C789121E7E14700261012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789021E7E14700261012 /* AppDelegate.swift */; };
 		E47C789321E7E14700261012 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789221E7E14700261012 /* ViewController.swift */; };
 		E47C789621E7E14700261012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789421E7E14700261012 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		E47C788D21E7E14700261012 /* Instagramimic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagramimic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47C789021E7E14700261012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E47C789221E7E14700261012 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				E47C789921E7E14800261012 /* LaunchScreen.storyboard */,
 				E47C789C21E7E14800261012 /* Info.plist */,
 				E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */,
+				E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */,
 			);
 			path = Instagramimic;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4697ABF21ED67DC00E423CE /* SignUpViewController.swift in Sources */,
+				E4697AC121EEB6B000E423CE /* UserProfileViewController.swift in Sources */,
 				E47C789321E7E14700261012 /* ViewController.swift in Sources */,
 				E47C789121E7E14700261012 /* AppDelegate.swift in Sources */,
 			);

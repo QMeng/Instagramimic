@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Instagramimic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="BYZ-38-t0r" customClass="ViewController" customModule="Instagramimic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,7 +122,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="6MP-fQ-z4p">
             <objects>
-                <viewController id="1r2-3S-tgg" customClass="SignUpViewController" customModule="Instagramimic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpView" id="1r2-3S-tgg" customClass="SignUpViewController" customModule="Instagramimic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JuO-1y-1ZL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,7 +170,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkD-xm-O08">
                                 <rect key="frame" x="20" y="368" width="144" height="30"/>
@@ -188,7 +188,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWz-4G-HSM">
                                 <rect key="frame" x="20" y="441" width="84" height="21"/>
@@ -246,6 +246,9 @@
                                 </constraints>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <segue destination="lJW-wN-hpg" kind="presentation" identifier="showUserProfile" id="eE4-q8-9mM"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-profile" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-Jm-xX4">
                                 <rect key="frame" x="20" y="91" width="109" height="135"/>
@@ -324,6 +327,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpS-qt-snr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="740.57971014492762" y="23.64130434782609"/>
+        </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="Fwq-vE-IRv">
+            <objects>
+                <viewController storyboardIdentifier="UserProfileView" id="lJW-wN-hpg" customClass="UserProfileViewController" customModule="Instagramimic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v9S-a9-d1S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LsN-xK-a3i">
+                                <rect key="frame" x="94" y="154" width="226" height="201"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyy-9u-d5Z">
+                                <rect key="frame" x="94" y="410" width="226" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="pk3-jH-MfL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z83-L2-YH7">
+                                <rect key="frame" x="94" y="458" width="226" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="NA0-xZ-Z2Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LsN-xK-a3i" firstAttribute="centerX" secondItem="v9S-a9-d1S" secondAttribute="centerX" id="21j-RA-bQs"/>
+                            <constraint firstItem="Eyy-9u-d5Z" firstAttribute="leading" secondItem="Z83-L2-YH7" secondAttribute="leading" id="Li8-C8-9N6"/>
+                            <constraint firstItem="LsN-xK-a3i" firstAttribute="leading" secondItem="Eyy-9u-d5Z" secondAttribute="leading" id="Nph-y0-p3H"/>
+                            <constraint firstItem="Z83-L2-YH7" firstAttribute="top" secondItem="Eyy-9u-d5Z" secondAttribute="bottom" constant="8" symbolic="YES" id="OKQ-94-zMB"/>
+                            <constraint firstItem="jpD-Gb-uNq" firstAttribute="bottom" secondItem="Z83-L2-YH7" secondAttribute="bottom" constant="240" id="PKe-hd-XA1"/>
+                            <constraint firstItem="LsN-xK-a3i" firstAttribute="leading" secondItem="jpD-Gb-uNq" secondAttribute="leading" constant="94" id="Puy-4J-uCD"/>
+                            <constraint firstItem="Eyy-9u-d5Z" firstAttribute="top" secondItem="LsN-xK-a3i" secondAttribute="bottom" constant="55" id="Rfa-XX-D4f"/>
+                            <constraint firstItem="Eyy-9u-d5Z" firstAttribute="trailing" secondItem="Z83-L2-YH7" secondAttribute="trailing" id="h5d-0x-Zbc"/>
+                            <constraint firstItem="LsN-xK-a3i" firstAttribute="trailing" secondItem="Eyy-9u-d5Z" secondAttribute="trailing" id="hMq-Ia-gBJ"/>
+                            <constraint firstItem="LsN-xK-a3i" firstAttribute="top" secondItem="jpD-Gb-uNq" secondAttribute="top" constant="134" id="sfk-JX-iPO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jpD-Gb-uNq"/>
+                    </view>
+                    <connections>
+                        <outlet property="ShortBiolabel" destination="Z83-L2-YH7" id="GDn-ye-MKy"/>
+                        <outlet property="UserProfilePicImageView" destination="LsN-xK-a3i" id="pV7-yY-PMa"/>
+                        <outlet property="UsernameLabel" destination="Eyy-9u-d5Z" id="e3p-Rg-xqv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qzt-TM-TeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1413.0434782608697" y="23.64130434782609"/>
         </scene>
     </scenes>
     <resources>
