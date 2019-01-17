@@ -136,15 +136,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBr-Dk-NZY">
-                                <rect key="frame" x="154" y="37" width="102" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="JP8-ii-ZcR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pB-VM-IrT">
                                 <rect key="frame" x="20" y="234" width="84" height="21"/>
                                 <constraints>
@@ -252,12 +243,17 @@
                                     <segue destination="lJW-wN-hpg" kind="presentation" identifier="showUserProfile" id="eE4-q8-9mM"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-profile" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-Jm-xX4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-profile" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-Jm-xX4">
                                 <rect key="frame" x="20" y="91" width="109" height="135"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="135" id="OF8-mO-moF"/>
                                     <constraint firstAttribute="width" constant="109" id="ZfN-DR-eeb"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uA8-mz-ndj">
                                 <rect key="frame" x="154" y="142" width="137" height="33"/>
@@ -281,18 +277,27 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" identifier="Login In" id="6iW-T0-7lv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBr-Dk-NZY">
+                                <rect key="frame" x="152" y="37" width="102.33333333333331" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="JP8-ii-ZcR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iGM-4i-Snm" firstAttribute="top" secondItem="RsL-hM-Ywe" secondAttribute="bottom" constant="16" id="4tJ-Nf-IR0"/>
                             <constraint firstItem="O1X-p4-sDj" firstAttribute="leading" secondItem="J4j-fy-K2Q" secondAttribute="leading" id="7m3-gb-DCI"/>
-                            <constraint firstItem="vBr-Dk-NZY" firstAttribute="leading" secondItem="mKp-ub-zSH" secondAttribute="leading" constant="154" id="83b-ge-azK"/>
+                            <constraint firstItem="vBr-Dk-NZY" firstAttribute="leading" secondItem="mKp-ub-zSH" secondAttribute="leading" constant="152" id="83b-ge-azK"/>
                             <constraint firstItem="mKp-ub-zSH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vBr-Dk-NZY" secondAttribute="trailing" symbolic="YES" id="Bn2-0Z-Gll"/>
                             <constraint firstItem="mKp-ub-zSH" firstAttribute="trailing" secondItem="Psc-5U-NSv" secondAttribute="trailing" constant="56" id="C5w-hh-EZo"/>
                             <constraint firstItem="uA8-mz-ndj" firstAttribute="centerY" secondItem="VF4-Jm-xX4" secondAttribute="centerY" id="CIc-JV-jEl"/>
                             <constraint firstItem="mKp-ub-zSH" firstAttribute="bottom" secondItem="iGM-4i-Snm" secondAttribute="bottom" constant="68" id="CnP-4e-4mh"/>
                             <constraint firstItem="VF4-Jm-xX4" firstAttribute="top" secondItem="mKp-ub-zSH" secondAttribute="top" constant="71" id="Cy6-lr-o4N"/>
-                            <constraint firstItem="uA8-mz-ndj" firstAttribute="leading" secondItem="vBr-Dk-NZY" secondAttribute="leading" id="DD9-Ip-bHN"/>
+                            <constraint firstItem="uA8-mz-ndj" firstAttribute="leading" secondItem="vBr-Dk-NZY" secondAttribute="leading" constant="2" id="DD9-Ip-bHN"/>
                             <constraint firstItem="fUp-Fh-ZmV" firstAttribute="leading" secondItem="FWz-4G-HSM" secondAttribute="leading" id="DWA-6X-lfL"/>
                             <constraint firstItem="O1X-p4-sDj" firstAttribute="top" secondItem="FWz-4G-HSM" secondAttribute="bottom" constant="8" symbolic="YES" id="Dbe-6L-Ek0"/>
                             <constraint firstItem="J4j-fy-K2Q" firstAttribute="leading" secondItem="JoY-d7-fJ4" secondAttribute="leading" id="FYD-IO-tfm"/>
@@ -353,8 +358,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LsN-xK-a3i">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LsN-xK-a3i">
                                 <rect key="frame" x="94" y="91" width="226" height="280"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyy-9u-d5Z">
                                 <rect key="frame" x="94" y="410" width="226" height="40"/>
