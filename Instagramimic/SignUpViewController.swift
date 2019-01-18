@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class SignUpViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -72,5 +72,26 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         
         myAlert.addAction(okAction)
         self.present(myAlert, animated: true, completion: nil)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField.tag {
+            case 1:
+                scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+            case 2:
+                scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
+            default:
+                print("do nothing")
+        }
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
