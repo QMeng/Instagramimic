@@ -12,10 +12,11 @@
 		E4697ABF21ED67DC00E423CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */; };
 		E4697AC121EEB6B000E423CE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */; };
 		E47C789121E7E14700261012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789021E7E14700261012 /* AppDelegate.swift */; };
-		E47C789321E7E14700261012 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789221E7E14700261012 /* ViewController.swift */; };
+		E47C789321E7E14700261012 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789221E7E14700261012 /* LoginViewController.swift */; };
 		E47C789621E7E14700261012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789421E7E14700261012 /* Main.storyboard */; };
 		E47C789821E7E14800261012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47C789721E7E14800261012 /* Assets.xcassets */; };
 		E47C789B21E7E14800261012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789921E7E14800261012 /* LaunchScreen.storyboard */; };
+		E4FAAB2521F93DB900C34366 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FAAB2421F93DB900C34366 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +28,12 @@
 		E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		E47C788D21E7E14700261012 /* Instagramimic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagramimic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47C789021E7E14700261012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E47C789221E7E14700261012 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E47C789221E7E14700261012 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E47C789521E7E14700261012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E47C789721E7E14800261012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E47C789A21E7E14800261012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E47C789C21E7E14800261012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4FAAB2421F93DB900C34366 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		F7848E8823D071DA6E35CADE /* Pods_Instagramimic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagramimic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -88,13 +90,14 @@
 			children = (
 				E457500321F7830F008CE4FD /* GoogleService-Info.plist */,
 				E47C789021E7E14700261012 /* AppDelegate.swift */,
-				E47C789221E7E14700261012 /* ViewController.swift */,
+				E47C789221E7E14700261012 /* LoginViewController.swift */,
 				E47C789421E7E14700261012 /* Main.storyboard */,
 				E47C789721E7E14800261012 /* Assets.xcassets */,
 				E47C789921E7E14800261012 /* LaunchScreen.storyboard */,
 				E47C789C21E7E14800261012 /* Info.plist */,
 				E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */,
 				E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */,
+				E4FAAB2421F93DB900C34366 /* StartViewController.swift */,
 			);
 			path = Instagramimic;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagramimic/Pods-Instagramimic-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -207,6 +211,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -222,9 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4FAAB2521F93DB900C34366 /* StartViewController.swift in Sources */,
 				E4697ABF21ED67DC00E423CE /* SignUpViewController.swift in Sources */,
 				E4697AC121EEB6B000E423CE /* UserProfileViewController.swift in Sources */,
-				E47C789321E7E14700261012 /* ViewController.swift in Sources */,
+				E47C789321E7E14700261012 /* LoginViewController.swift in Sources */,
 				E47C789121E7E14700261012 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

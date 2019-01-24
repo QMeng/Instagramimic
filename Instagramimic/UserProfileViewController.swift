@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class UserProfileViewController: UIViewController {
 
@@ -26,6 +28,18 @@ class UserProfileViewController: UIViewController {
         UsernameLabel.text = usernameLabelText
         ShortBiolabel.text = shortBioLabelText
         UserProfilePicImageView.image = profileImage
+    }
+    
+    @IBAction func logOutTabbed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initial = storyboard.instantiateInitialViewController()
+        UIApplication.shared.keyWindow?.rootViewController = initial
     }
     
 }

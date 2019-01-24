@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SignUpViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
@@ -35,34 +37,11 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         imagePickerController.dismiss(animated: true, completion: nil)
         profileImage.image = info[.originalImage] as? UIImage
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showUserProfile"
-        {
-            let userEmail = emailTextField.text
-            let userPassword = passwordTextField.text
-            let userConfirmPassword = confirmPasswordTextField.text
-            let userUsername = usernameTextField.text
-            let userShortBio = shortBioTextField.text
-            
-            if (userEmail!.isEmpty || userPassword!.isEmpty || userConfirmPassword!.isEmpty || userUsername!.isEmpty || userShortBio!.isEmpty){
-                // Display alert message
-                displayMyAlertMessage(userMessage: "All fields are required!")
-                return;
-            }
-            
-            // check passwords matches each other
-            if (userPassword != userConfirmPassword) {
-                // Display alert message
-                displayMyAlertMessage(userMessage: "Passwords do not match!")
-                return;
-            }
-            
-            let destinationVC: UserProfileViewController = (segue.destination as? UserProfileViewController)!
-            destinationVC.usernameLabelText = userUsername!
-            destinationVC.shortBioLabelText = userShortBio!
-            destinationVC.profileImage = profileImage.image!
-        }
+    
+    func isValidEmail(email:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
     }
     
     func displayMyAlertMessage(userMessage: String) {
@@ -93,5 +72,39 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @IBAction func signUpButtonTabbed(_ sender: Any) {
+        let userEmail = emailTextField.text
+        let userPassword = passwordTextField.text
+        let userConfirmPassword = confirmPasswordTextField.text
+        let userUsername = usernameTextField.text
+        let userShortBio = shortBioTextField.text
+        
+        if (userEmail!.isEmpty || userPassword!.isEmpty || userConfirmPassword!.isEmpty || userUsername!.isEmpty || userShortBio!.isEmpty){
+            // Display alert message
+            displayMyAlertMessage(userMessage: "All fields are required!")
+            return;
+        }
+        
+        if (!isValidEmail(email: userEmail!)) {
+            // display alert message
+            displayMyAlertMessage(userMessage: "Please input a valid email!")
+        }
+        
+        // check passwords matches each other
+        if (userPassword != userConfirmPassword) {
+            // Display alert message
+            displayMyAlertMessage(userMessage: "Passwords do not match!")
+            return;
+        }
+        
+        Auth.auth().createUser(withEmail: userEmail!, password: userPassword!) { (user, error) in
+            if error == nil {
+                self.performSegue(withIdentifier: "signUpToHome", sender: self)
+            } else {
+                self.displayMyAlertMessage(userMessage: error?.localizedDescription ?? "Error creating user")
+            }
+        }
     }
 }
