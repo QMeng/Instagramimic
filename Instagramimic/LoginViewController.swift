@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -18,6 +17,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "toProfileView", sender: nil)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

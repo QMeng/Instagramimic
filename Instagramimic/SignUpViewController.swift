@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 
 class SignUpViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
@@ -74,6 +73,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         return true
     }
     
+    // sign up button tabbed, start user registration processes
     @IBAction func signUpButtonTabbed(_ sender: Any) {
         let userEmail = emailTextField.text
         let userPassword = passwordTextField.text
@@ -99,12 +99,44 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
             return;
         }
         
-        Auth.auth().createUser(withEmail: userEmail!, password: userPassword!) { (user, error) in
+        createUser(email: userEmail!, password: userPassword!, username: userUsername!, shortBio: userShortBio!)
+    }
+    
+    // create user and upload user data into firestore
+    func createUser(email: String, password: String, username: String, shortBio: String) {
+        displayLoadingOverlay()
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if error == nil {
+                let db = Firestore.firestore()
+                db.collection("users").document((Auth.auth().currentUser?.uid)!).setData([
+                    "email": email,
+                    "username": username,
+                    "shortBio": shortBio
+                ]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document successfully created")
+                    }
+                }
+                self.dismiss(animated: false, completion: nil)
                 self.performSegue(withIdentifier: "signUpToHome", sender: self)
             } else {
+                self.dismiss(animated: false, completion: nil)
                 self.displayMyAlertMessage(userMessage: error?.localizedDescription ?? "Error creating user")
             }
         }
+    }
+    
+    func displayLoadingOverlay() {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
     }
 }

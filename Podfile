@@ -8,4 +8,6 @@ target 'Instagramimic' do
   # Pods for Instagramimic
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
 end
