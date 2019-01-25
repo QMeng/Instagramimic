@@ -8,26 +8,29 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 
 class UserProfileViewController: UIViewController {
 
-    @IBOutlet weak var UsernameLabel: UILabel!
-    @IBOutlet weak var ShortBiolabel: UILabel!
-    @IBOutlet weak var UserProfilePicImageView: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var usernameField: UILabel!
+    @IBOutlet weak var shortBioField: UILabel!
     
-    var usernameLabelText = String()
-    var shortBioLabelText = String()
-    var profileImage = UIImage()
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        UsernameLabel.text = usernameLabelText
-        ShortBiolabel.text = shortBioLabelText
-        UserProfilePicImageView.image = profileImage
+        let docRef = db.collection("users").document((Auth.auth().currentUser?.uid)!)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dictionary = document.data()
+                self.usernameField.text = dictionary!["username"] as? String
+                self.shortBioField.text = dictionary!["shortBio"] as? String
+            } else {
+                print("Document does not exist")
+            }
+        }
     }
     
     @IBAction func logOutTabbed(_ sender: Any) {

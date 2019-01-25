@@ -32,25 +32,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text
         
         if (email!.isEmpty) || (password!.isEmpty) {
-            displayMyAlertMessage(userMessage: "Please fill all fields!")
+            Instagramimic.displayMyAlertMessage(view: self, userMessage: "Please fill all fields!")
         }
         
         Auth.auth().signIn(withEmail: email!, password: password!) { (user, error) in
             if error == nil {
                 self.performSegue(withIdentifier: "toProfileView", sender: self)
             } else {
-                self.displayMyAlertMessage(userMessage: error?.localizedDescription ?? "Error logging in")
+                Instagramimic.displayMyAlertMessage(view: self, userMessage: error?.localizedDescription ?? "Error logging in")
             }
         }
-    }
-    
-    func displayMyAlertMessage(userMessage: String) {
-        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
-        
-        myAlert.addAction(okAction)
-        self.present(myAlert, animated: true, completion: nil)
     }
 }
 

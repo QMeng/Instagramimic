@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var shortBioTextField: UITextField!
+    let db = Firestore.firestore()
     
     var imagePickerController : UIImagePickerController!
     @IBOutlet weak var profileImage: UIImageView!
@@ -41,15 +42,6 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: email)
-    }
-    
-    func displayMyAlertMessage(userMessage: String) {
-        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
-        
-        myAlert.addAction(okAction)
-        self.present(myAlert, animated: true, completion: nil)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -83,19 +75,19 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         
         if (userEmail!.isEmpty || userPassword!.isEmpty || userConfirmPassword!.isEmpty || userUsername!.isEmpty || userShortBio!.isEmpty){
             // Display alert message
-            displayMyAlertMessage(userMessage: "All fields are required!")
+            Instagramimic.displayMyAlertMessage(view: self, userMessage: "All fields are required!")
             return;
         }
         
         if (!isValidEmail(email: userEmail!)) {
             // display alert message
-            displayMyAlertMessage(userMessage: "Please input a valid email!")
+            Instagramimic.displayMyAlertMessage(view: self, userMessage: "Please input a valid email!")
         }
         
         // check passwords matches each other
         if (userPassword != userConfirmPassword) {
             // Display alert message
-            displayMyAlertMessage(userMessage: "Passwords do not match!")
+            Instagramimic.displayMyAlertMessage(view: self, userMessage: "Passwords do not match!")
             return;
         }
         
@@ -104,11 +96,10 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
     
     // create user and upload user data into firestore
     func createUser(email: String, password: String, username: String, shortBio: String) {
-        displayLoadingOverlay()
+        Instagramimic.displayLoadingOverlay(view: self)
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if error == nil {
-                let db = Firestore.firestore()
-                db.collection("users").document((Auth.auth().currentUser?.uid)!).setData([
+                self.db.collection("users").document((Auth.auth().currentUser?.uid)!).setData([
                     "email": email,
                     "username": username,
                     "shortBio": shortBio
@@ -123,20 +114,8 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
                 self.performSegue(withIdentifier: "signUpToHome", sender: self)
             } else {
                 self.dismiss(animated: false, completion: nil)
-                self.displayMyAlertMessage(userMessage: error?.localizedDescription ?? "Error creating user")
+                Instagramimic.displayMyAlertMessage(view: self, userMessage: error?.localizedDescription ?? "Error creating user")
             }
         }
-    }
-    
-    func displayLoadingOverlay() {
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-        
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.gray
-        loadingIndicator.startAnimating();
-        
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
     }
 }

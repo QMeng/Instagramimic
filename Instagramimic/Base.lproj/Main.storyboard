@@ -390,7 +390,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyy-9u-d5Z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyy-9u-d5Z">
                                 <rect key="frame" x="137" y="77" width="257" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="pk3-jH-MfL"/>
@@ -414,7 +414,7 @@
                                     <action selector="logOutTabbed:" destination="lJW-wN-hpg" eventType="touchUpInside" id="bb2-Rn-8AN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z83-L2-YH7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z83-L2-YH7">
                                 <rect key="frame" x="137" y="125" width="257" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="NA0-xZ-Z2Z"/>
@@ -445,9 +445,9 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="ShortBiolabel" destination="Z83-L2-YH7" id="GDn-ye-MKy"/>
-                        <outlet property="UserProfilePicImageView" destination="LsN-xK-a3i" id="pV7-yY-PMa"/>
-                        <outlet property="UsernameLabel" destination="Eyy-9u-d5Z" id="e3p-Rg-xqv"/>
+                        <outlet property="profileImage" destination="LsN-xK-a3i" id="UnI-4x-3C5"/>
+                        <outlet property="shortBioField" destination="Z83-L2-YH7" id="pNx-BG-Dhd"/>
+                        <outlet property="usernameField" destination="Eyy-9u-d5Z" id="iN4-mI-ecs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzt-TM-TeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -459,6 +459,6 @@
         <image name="empty-profile" width="118.08000183105469" height="135.36000061035156"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VqO-5k-3BE"/>
+        <segue reference="wbK-Xx-jck"/>
     </inferredMetricsTieBreakers>
 </document>
