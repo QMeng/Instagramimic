@@ -10,4 +10,5 @@ target 'Instagramimic' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
+  pod 'SDWebImage/WebP'
 end

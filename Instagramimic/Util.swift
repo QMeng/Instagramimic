@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 func displayMyAlertMessage(view: UIViewController, userMessage: String) {
     let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: .alert)
@@ -54,4 +55,28 @@ func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
     UIGraphicsEndImageContext()
     
     return newImage!
+}
+
+func uploadPic(storageRef: StorageReference, image: UIImage, uid: String, name: String) {
+    var data = Data()
+    data = image.jpegData(compressionQuality: 1.0)!
+    let filePath = "\(uid)/\(name)"
+    let metaData = StorageMetadata()
+    metaData.contentType = "image/jpg"
+    let picRef = storageRef.child(filePath)
+    
+    picRef.putData(data, metadata: nil) { (metadata, error) in
+        guard metadata != nil else {
+            // Uh-oh, an error occurred!
+            print(error?.localizedDescription as Any)
+            return
+        }
+        picRef.downloadURL { (url, error) in
+            guard url != nil else {
+                // Uh-oh, an error occurred!
+                return
+            }
+        }
+    }
+    
 }

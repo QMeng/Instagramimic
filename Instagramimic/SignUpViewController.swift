@@ -35,7 +35,7 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePickerController.dismiss(animated: true, completion: nil)
-        profileImage.image = info[.originalImage] as? UIImage
+        profileImage.image = resizeImage(image: (info[.originalImage] as? UIImage)!, targetSize: CGSize(width: 200.0, height: 200.0))
     }
     
     func isValidEmail(email:String) -> Bool {
@@ -75,46 +75,66 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         
         if (userEmail!.isEmpty || userPassword!.isEmpty || userConfirmPassword!.isEmpty || userUsername!.isEmpty || userShortBio!.isEmpty){
             // Display alert message
-            Instagramimic.displayMyAlertMessage(view: self, userMessage: "All fields are required!")
+            displayMyAlertMessage(view: self, userMessage: "All fields are required!")
             return;
         }
         
         if (!isValidEmail(email: userEmail!)) {
             // display alert message
-            Instagramimic.displayMyAlertMessage(view: self, userMessage: "Please input a valid email!")
+            displayMyAlertMessage(view: self, userMessage: "Please input a valid email!")
+            return;
         }
         
         // check passwords matches each other
         if (userPassword != userConfirmPassword) {
             // Display alert message
-            Instagramimic.displayMyAlertMessage(view: self, userMessage: "Passwords do not match!")
+            displayMyAlertMessage(view: self, userMessage: "Passwords do not match!")
             return;
         }
         
+        displayLoadingOverlay(view: self)
         createUser(email: userEmail!, password: userPassword!, username: userUsername!, shortBio: userShortBio!)
+        
     }
     
     // create user and upload user data into firestore
     func createUser(email: String, password: String, username: String, shortBio: String) {
-        Instagramimic.displayLoadingOverlay(view: self)
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if error == nil {
-                self.db.collection("users").document((Auth.auth().currentUser?.uid)!).setData([
-                    "email": email,
-                    "username": username,
-                    "shortBio": shortBio
-                ]) { err in
-                    if let err = err {
-                        print("Error adding document: \(err)")
+            if error != nil {
+                print(error?.localizedDescription as Any)
+                self.dismiss(animated: false, completion: nil)
+                displayMyAlertMessage(view: self, userMessage: error?.localizedDescription ?? "Error creating user")
+            } else {
+                Auth.auth().signIn(withEmail: email, password: password)
+                
+                var data = Data()
+                data = self.profileImage.image!.jpegData(compressionQuality: 0.1)!
+                let filePath = "\((Auth.auth().currentUser?.uid)!)/profilePic.jpg"
+                let metaData = StorageMetadata()
+                metaData.contentType = "image/jpg"
+                let picRef = Storage.storage().reference().child(filePath)
+                picRef.putData(data, metadata: metaData) { (metadata, error) in
+                    if error != nil {
+                        print(error?.localizedDescription as Any)
                     } else {
-                        print("Document successfully created")
+                        print("Profile pic upload successful")
+                        Firestore.firestore().collection("users").document((Auth.auth().currentUser?.uid)!).setData([
+                            "email": email,
+                            "username": username,
+                            "shortBio": shortBio,
+                            "profilePic": "\((Auth.auth().currentUser?.uid)!)/profilePic.jpg"
+                        ]) { err in
+                            if let err = err {
+                                print("Error adding document: \(err)")
+                            } else {
+                                print("Document successfully created")
+                            }
+                        }
                     }
                 }
+                
                 self.dismiss(animated: false, completion: nil)
                 self.performSegue(withIdentifier: "signUpToHome", sender: self)
-            } else {
-                self.dismiss(animated: false, completion: nil)
-                Instagramimic.displayMyAlertMessage(view: self, userMessage: error?.localizedDescription ?? "Error creating user")
             }
         }
     }
