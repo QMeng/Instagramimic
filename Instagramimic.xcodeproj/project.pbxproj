@@ -94,19 +94,19 @@
 		E47C788F21E7E14700261012 /* Instagramimic */ = {
 			isa = PBXGroup;
 			children = (
-				E457500321F7830F008CE4FD /* GoogleService-Info.plist */,
-				E47C789021E7E14700261012 /* AppDelegate.swift */,
-				E47C789221E7E14700261012 /* LoginViewController.swift */,
-				E47C789421E7E14700261012 /* Main.storyboard */,
 				E47C789721E7E14800261012 /* Assets.xcassets */,
-				E47C789921E7E14800261012 /* LaunchScreen.storyboard */,
+				E457500321F7830F008CE4FD /* GoogleService-Info.plist */,
 				E47C789C21E7E14800261012 /* Info.plist */,
+				E47C789021E7E14700261012 /* AppDelegate.swift */,
+				E47C789421E7E14700261012 /* Main.storyboard */,
+				E47C789921E7E14800261012 /* LaunchScreen.storyboard */,
+				E47C789221E7E14700261012 /* LoginViewController.swift */,
 				E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */,
 				E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */,
-				E4FAAB2821FAA90800C34366 /* Util.swift */,
 				E4207D2721FCE131000A849A /* ImageCollectionViewCell.swift */,
 				E4207D2921FCEE7F000A849A /* CustomImageFlowLayout.swift */,
 				E4207D2B21FD4B24000A849A /* ImageStruct.swift */,
+				E4FAAB2821FAA90800C34366 /* Util.swift */,
 			);
 			path = Instagramimic;
 			sourceTree = "<group>";

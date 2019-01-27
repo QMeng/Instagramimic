@@ -107,34 +107,33 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
             } else {
                 Auth.auth().signIn(withEmail: email, password: password)
                 
-                var data = Data()
-                data = self.profileImage.image!.jpegData(compressionQuality: 0.1)!
-                let filePath = "\((Auth.auth().currentUser?.uid)!)/profilePic.jpg"
-                let metaData = StorageMetadata()
-                metaData.contentType = "image/jpg"
-                let picRef = Storage.storage().reference().child(filePath)
-                picRef.putData(data, metadata: metaData) { (metadata, error) in
+                let (data, metadata, picRef) = prepareUploadPic(image: self.profileImage.image!, filePath: "\((Auth.auth().currentUser?.uid)!)/profilePic.jpg")
+                
+                picRef.putData(data, metadata: metadata) { (metadata, error) in
                     if error != nil {
                         print(error?.localizedDescription as Any)
                     } else {
                         print("Profile pic upload successful")
-                        Firestore.firestore().collection("users").document((Auth.auth().currentUser?.uid)!).setData([
-                            "email": email,
-                            "username": username,
-                            "shortBio": shortBio,
-                            "profilePic": "\((Auth.auth().currentUser?.uid)!)/profilePic.jpg"
-                        ]) { err in
-                            if let err = err {
-                                print("Error adding document: \(err)")
-                            } else {
-                                print("Document successfully created")
+                        
+                        picRef.downloadURL { (url, error) in
+                            Firestore.firestore().collection("users").document((Auth.auth().currentUser?.uid)!).setData([
+                                "email": email,
+                                "username": username,
+                                "shortBio": shortBio,
+                                "profilePic": "\((Auth.auth().currentUser?.uid)!)/profilePic.jpg",
+                                "profilePicURL": url?.absoluteString as Any
+                            ]) { err in
+                                if let err = err {
+                                    print("Error adding document: \(err)")
+                                } else {
+                                    print("Document successfully created")
+                                    self.dismiss(animated: false, completion: nil)
+                                    self.performSegue(withIdentifier: "signUpToHome", sender: self)
+                                }
                             }
                         }
                     }
-                }
-                
-                self.dismiss(animated: false, completion: nil)
-                self.performSegue(withIdentifier: "signUpToHome", sender: self)
+                }                
             }
         }
     }

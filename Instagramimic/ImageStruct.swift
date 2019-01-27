@@ -11,23 +11,14 @@ import Firebase
 
 struct ImageStruct {
     let uid: String
-    let url: String
+    let thumbnailURL: String
+    let fullSizeURL: String
+    let timestamp: Int
     
-    let itemRef: DocumentReference?
-    
-    init(uid: String, url: String) {
+    init(uid: String, thumbnailURL: String, fullSizeURL: String, timestamp: Int) {
         self.uid = uid
-        self.url = url
-        self.itemRef = nil
-    }
-    
-    init(snapshot: DocumentSnapshot) {
-        self.uid = snapshot.data()!["uid"] as! String
-        self.itemRef = snapshot.reference
-        if let imageURL = snapshot.data()!["url"] as? String {
-            self.url = imageURL
-        } else {
-            self.url = ""
-        }
+        self.thumbnailURL = thumbnailURL
+        self.fullSizeURL = fullSizeURL
+        self.timestamp = timestamp
     }
 }

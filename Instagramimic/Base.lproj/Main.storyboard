@@ -165,7 +165,11 @@
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Instagramimc" id="g6G-Ns-uGz">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="pDY-DT-aXe"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="pDY-DT-aXe">
+                                            <connections>
+                                                <action selector="addImageButtonTabbed:" destination="pX6-1A-OVc" id="HLt-Xu-Iio"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="cNs-Q7-pPG">
                                             <connections>
                                                 <action selector="logOutTabbed:" destination="pX6-1A-OVc" id="jRm-fX-lqq"/>
@@ -181,10 +185,10 @@
                                     <constraint firstAttribute="width" secondItem="g9b-fI-eP7" secondAttribute="height" multiplier="97:118" id="ebZ-eP-2CI"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uf-Wx-ben">
-                                <rect key="frame" x="122" y="147" width="272" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uf-Wx-ben">
+                                <rect key="frame" x="122" y="147" width="272" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HR1-PP-5Pq">
@@ -192,25 +196,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9sm-uW-uxI">
-                                    <size key="itemSize" width="198" height="186"/>
+                                    <size key="itemSize" width="108" height="104"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="xKs-y3-Hzl" customClass="ImageCollectionViewCell" customModule="Instagramimic" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="198" height="186"/>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="Cell" id="xKs-y3-Hzl" customClass="ImageCollectionViewCell" customModule="Instagramimic" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="108" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="198" height="186"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="108" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbo-Nh-XIA">
-                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="186"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kbo-Nh-XIA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="104"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="kbo-Nh-XIA" firstAttribute="top" secondItem="xKs-y3-Hzl" secondAttribute="top" id="Dtu-rB-2GL"/>
+                                            <constraint firstItem="kbo-Nh-XIA" firstAttribute="leading" secondItem="xKs-y3-Hzl" secondAttribute="leading" id="OJe-j6-lbF"/>
+                                            <constraint firstItem="kbo-Nh-XIA" firstAttribute="width" secondItem="xKs-y3-Hzl" secondAttribute="width" id="Ufx-4X-b2x"/>
+                                            <constraint firstItem="kbo-Nh-XIA" firstAttribute="height" secondItem="xKs-y3-Hzl" secondAttribute="height" id="wgD-gh-BbE"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="kbo-Nh-XIA" id="OXu-mG-2NR"/>
                                         </connections>
@@ -221,7 +230,7 @@
                                     <outlet property="delegate" destination="pX6-1A-OVc" id="dfz-0a-8vG"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlN-6H-GxI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlN-6H-GxI">
                                 <rect key="frame" x="122" y="107" width="272" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="gtX-GV-bc8"/>
@@ -343,7 +352,7 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
+                                                <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
@@ -492,6 +501,6 @@
         <image name="empty-profile" width="118.08000183105469" height="135.36000061035156"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1pD-G9-u5C"/>
+        <segue reference="Mqj-gI-ZZs"/>
     </inferredMetricsTieBreakers>
 </document>
