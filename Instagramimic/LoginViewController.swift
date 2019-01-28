@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "toProfileView", sender: nil)
+            self.performSegue(withIdentifier: "toProfileView", sender: self)
         }
     }
     

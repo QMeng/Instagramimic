@@ -83,9 +83,36 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ImageCollectionViewCell
         let image = images[indexPath.row]
+        cell.imageView.tag = indexPath.row
+        cell.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onImageViewTap)))
         cell.imageView!.sd_setImage(with: URL.init(string: image.thumbnailURL), placeholderImage: UIImage(named: "image1"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
         })
         return cell
+    }
+    
+    @objc func onImageViewTap(sender: UITapGestureRecognizer)
+    {
+        let imageView = sender.view as! UIImageView
+        let tag = imageView.tag
+        let url = images[tag].fullSizeURL
+        let newImageView = UIImageView()
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        newImageView.addGestureRecognizer(tap)
+        newImageView.sd_setImage(with: URL.init(string: url), placeholderImage: UIImage(named: "image1"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
+        })
+        self.view.addSubview(newImageView)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

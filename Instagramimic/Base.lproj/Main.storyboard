@@ -164,7 +164,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oE7-Ts-7R5">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Instagramimc" id="g6G-Ns-uGz">
+                                    <navigationItem title="Instagramimic" id="g6G-Ns-uGz">
                                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="pDY-DT-aXe">
                                             <connections>
                                                 <action selector="addImageButtonTabbed:" destination="pX6-1A-OVc" id="HLt-Xu-Iio"/>
@@ -178,12 +178,17 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g9b-fI-eP7">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g9b-fI-eP7">
                                 <rect key="frame" x="8" y="74" width="97" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="IxM-SG-2Fo"/>
                                     <constraint firstAttribute="width" secondItem="g9b-fI-eP7" secondAttribute="height" multiplier="97:118" id="ebZ-eP-2CI"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uf-Wx-ben">
                                 <rect key="frame" x="122" y="147" width="272" height="0.0"/>
@@ -209,7 +214,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="108" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kbo-Nh-XIA">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kbo-Nh-XIA">
                                                     <rect key="frame" x="0.0" y="0.0" width="108" height="104"/>
                                                 </imageView>
                                             </subviews>
