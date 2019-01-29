@@ -85,7 +85,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
         let image = images[indexPath.row]
         cell.imageView.tag = indexPath.row
         cell.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onImageViewTap)))
-        cell.imageView!.sd_setImage(with: URL.init(string: image.thumbnailURL), placeholderImage: UIImage(named: "image1"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
+        cell.imageView!.sd_setImage(with: URL.init(string: image.thumbnailURL), placeholderImage:UIImage.gif(asset: "loading"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
         })
         return cell
     }
@@ -102,7 +102,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
         newImageView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
         newImageView.addGestureRecognizer(tap)
-        newImageView.sd_setImage(with: URL.init(string: url), placeholderImage: UIImage(named: "image1"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
+        newImageView.sd_setImage(with: URL.init(string: url), placeholderImage: UIImage.gif(asset: "spinner"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
         })
         self.view.addSubview(newImageView)
         self.navigationController?.isNavigationBarHidden = true
@@ -118,7 +118,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePickerController!.dismiss(animated: true, completion: nil)
         let timestamp = Int(NSDate().timeIntervalSince1970)
-        
+        displayLoadingOverlay(view: self)
         uploadThumbnail(image: (info[.originalImage] as! UIImage), timestamp: timestamp)
     }
     
@@ -165,6 +165,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
                 print("Error adding document: \(err)")
             } else {
                 print("Pic Document successfully created")
+                self.dismiss(animated: false, completion: nil)
             }
         }
     }

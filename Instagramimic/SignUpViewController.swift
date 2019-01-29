@@ -94,7 +94,6 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         
         displayLoadingOverlay(view: self)
         createUser(email: userEmail!, password: userPassword!, username: userUsername!, shortBio: userShortBio!)
-        
     }
     
     // create user and upload user data into firestore

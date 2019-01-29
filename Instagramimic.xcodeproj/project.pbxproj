@@ -17,8 +17,9 @@
 		E47C789121E7E14700261012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789021E7E14700261012 /* AppDelegate.swift */; };
 		E47C789321E7E14700261012 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789221E7E14700261012 /* LoginViewController.swift */; };
 		E47C789621E7E14700261012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789421E7E14700261012 /* Main.storyboard */; };
-		E47C789821E7E14800261012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47C789721E7E14800261012 /* Assets.xcassets */; };
 		E47C789B21E7E14800261012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789921E7E14800261012 /* LaunchScreen.storyboard */; };
+		E4A6D8E921FFEE3400CA4A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4A6D8E821FFEE3400CA4A87 /* Assets.xcassets */; };
+		E4A6D8EB21FFEFBB00CA4A87 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D8EA21FFEFBB00CA4A87 /* UIImage+Gif.swift */; };
 		E4FAAB2921FAA90800C34366 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FAAB2821FAA90800C34366 /* Util.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +37,10 @@
 		E47C789021E7E14700261012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E47C789221E7E14700261012 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E47C789521E7E14700261012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E47C789721E7E14800261012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E47C789A21E7E14800261012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E47C789C21E7E14800261012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4A6D8E821FFEE3400CA4A87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E4A6D8EA21FFEFBB00CA4A87 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		E4FAAB2821FAA90800C34366 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		F7848E8823D071DA6E35CADE /* Pods_Instagramimic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagramimic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -94,7 +96,7 @@
 		E47C788F21E7E14700261012 /* Instagramimic */ = {
 			isa = PBXGroup;
 			children = (
-				E47C789721E7E14800261012 /* Assets.xcassets */,
+				E4A6D8E821FFEE3400CA4A87 /* Assets.xcassets */,
 				E457500321F7830F008CE4FD /* GoogleService-Info.plist */,
 				E47C789C21E7E14800261012 /* Info.plist */,
 				E47C789021E7E14700261012 /* AppDelegate.swift */,
@@ -107,6 +109,7 @@
 				E4207D2921FCEE7F000A849A /* CustomImageFlowLayout.swift */,
 				E4207D2B21FD4B24000A849A /* ImageStruct.swift */,
 				E4FAAB2821FAA90800C34366 /* Util.swift */,
+				E4A6D8EA21FFEFBB00CA4A87 /* UIImage+Gif.swift */,
 			);
 			path = Instagramimic;
 			sourceTree = "<group>";
@@ -174,7 +177,7 @@
 			files = (
 				E47C789B21E7E14800261012 /* LaunchScreen.storyboard in Resources */,
 				E457500421F78310008CE4FD /* GoogleService-Info.plist in Resources */,
-				E47C789821E7E14800261012 /* Assets.xcassets in Resources */,
+				E4A6D8E921FFEE3400CA4A87 /* Assets.xcassets in Resources */,
 				E47C789621E7E14700261012 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +279,7 @@
 				E4207D2821FCE131000A849A /* ImageCollectionViewCell.swift in Sources */,
 				E4FAAB2921FAA90800C34366 /* Util.swift in Sources */,
 				E4697ABF21ED67DC00E423CE /* SignUpViewController.swift in Sources */,
+				E4A6D8EB21FFEFBB00CA4A87 /* UIImage+Gif.swift in Sources */,
 				E4207D2A21FCEE7F000A849A /* CustomImageFlowLayout.swift in Sources */,
 				E4207D2C21FD4B24000A849A /* ImageStruct.swift in Sources */,
 				E4697AC121EEB6B000E423CE /* UserProfileViewController.swift in Sources */,
