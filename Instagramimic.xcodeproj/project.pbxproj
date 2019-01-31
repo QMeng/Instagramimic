@@ -16,8 +16,8 @@
 		E4697AC121EEB6B000E423CE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4697AC021EEB6B000E423CE /* UserProfileViewController.swift */; };
 		E47C789121E7E14700261012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789021E7E14700261012 /* AppDelegate.swift */; };
 		E47C789321E7E14700261012 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C789221E7E14700261012 /* LoginViewController.swift */; };
-		E47C789621E7E14700261012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789421E7E14700261012 /* Main.storyboard */; };
 		E47C789B21E7E14800261012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47C789921E7E14800261012 /* LaunchScreen.storyboard */; };
+		E4831E602202803A00C4AC78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4831E5F2202803A00C4AC78 /* Main.storyboard */; };
 		E4A6D8E921FFEE3400CA4A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4A6D8E821FFEE3400CA4A87 /* Assets.xcassets */; };
 		E4A6D8EB21FFEFBB00CA4A87 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D8EA21FFEFBB00CA4A87 /* UIImage+Gif.swift */; };
 		E4FAAB2921FAA90800C34366 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FAAB2821FAA90800C34366 /* Util.swift */; };
@@ -36,9 +36,9 @@
 		E47C788D21E7E14700261012 /* Instagramimic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagramimic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47C789021E7E14700261012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E47C789221E7E14700261012 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		E47C789521E7E14700261012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E47C789A21E7E14800261012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E47C789C21E7E14800261012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4831E5F2202803A00C4AC78 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../../.Trash/Main.storyboard; sourceTree = "<group>"; };
 		E4A6D8E821FFEE3400CA4A87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4A6D8EA21FFEFBB00CA4A87 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		E4FAAB2821FAA90800C34366 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -97,10 +97,10 @@
 			isa = PBXGroup;
 			children = (
 				E4A6D8E821FFEE3400CA4A87 /* Assets.xcassets */,
+				E4831E5F2202803A00C4AC78 /* Main.storyboard */,
 				E457500321F7830F008CE4FD /* GoogleService-Info.plist */,
 				E47C789C21E7E14800261012 /* Info.plist */,
 				E47C789021E7E14700261012 /* AppDelegate.swift */,
-				E47C789421E7E14700261012 /* Main.storyboard */,
 				E47C789921E7E14800261012 /* LaunchScreen.storyboard */,
 				E47C789221E7E14700261012 /* LoginViewController.swift */,
 				E4697ABE21ED67DC00E423CE /* SignUpViewController.swift */,
@@ -178,7 +178,7 @@
 				E47C789B21E7E14800261012 /* LaunchScreen.storyboard in Resources */,
 				E457500421F78310008CE4FD /* GoogleService-Info.plist in Resources */,
 				E4A6D8E921FFEE3400CA4A87 /* Assets.xcassets in Resources */,
-				E47C789621E7E14700261012 /* Main.storyboard in Resources */,
+				E4831E602202803A00C4AC78 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,14 +291,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E47C789421E7E14700261012 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E47C789521E7E14700261012 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E47C789921E7E14800261012 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
