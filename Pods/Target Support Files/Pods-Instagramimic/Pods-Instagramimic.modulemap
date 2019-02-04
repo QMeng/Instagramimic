@@ -1,0 +1,6 @@
+framework module Pods_Instagramimic {
+  umbrella header "Pods-Instagramimic-umbrella.h"
+
+  export *
+  module * { export * }
+}
