@@ -11,4 +11,6 @@ target 'Instagramimic' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'SDWebImage/WebP'
+  pod 'Firebase/MLVision'
+  pod 'IQKeyboardManagerSwift'
 end

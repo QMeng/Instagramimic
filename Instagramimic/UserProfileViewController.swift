@@ -20,8 +20,8 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
     var profilePicPath: String!
     var images = [ImageStruct]()
     var imagePickerController: UIImagePickerController?
-    var thumbnailURL: String = ""
-    var fullSizeURL: String = ""
+    var timestamp = Int()
+    var photo = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +29,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
         customImageFlowLayout = CustomImageFlowLayout()
         imageCollectionView.collectionViewLayout = customImageFlowLayout
         imageCollectionView.backgroundColor = .white
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        
         let docRef = Firestore.firestore().collection("users").document((Auth.auth().currentUser?.uid)!)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -45,6 +42,25 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
                 print(error?.localizedDescription as Any)
             }
         }
+    }
+    
+    @IBAction func addImageButtonTabbed(_ sender: Any) {
+        imagePickerController = UIImagePickerController()
+        imagePickerController!.delegate = self
+        imagePickerController!.sourceType = .camera
+        present(imagePickerController!, animated: true)
+    }
+    
+    @IBAction func logOutTabbed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initial = storyboard.instantiateInitialViewController()
+        UIApplication.shared.keyWindow?.rootViewController = initial
     }
     
     func loadData() {
@@ -62,18 +78,6 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
             }
             self.imageCollectionView.reloadData()
         }
-    }
-    
-    @IBAction func logOutTabbed(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initial = storyboard.instantiateInitialViewController()
-        UIApplication.shared.keyWindow?.rootViewController = initial
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -114,67 +118,19 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
         self.tabBarController?.tabBar.isHidden = false
         sender.view?.removeFromSuperview()
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePickerController!.dismiss(animated: true, completion: nil)
-        let timestamp = Int(NSDate().timeIntervalSince1970)
-        displayLoadingOverlay(view: self)
-        uploadThumbnail(image: (info[.originalImage] as! UIImage), timestamp: timestamp)
+        timestamp = Int(NSDate().timeIntervalSince1970)
+        photo = cropToBounds(image: info[.originalImage] as! UIImage)
+        performSegue(withIdentifier: "toCaptionView", sender: self)
     }
     
-    func uploadThumbnail(image: UIImage, timestamp: Int) {
-        let thumbnail = resizeImage(image: cropToBounds(image: image), targetSize: CGSize(width: 200.0, height: 200.0))
-        let thumbnailPath = "\((Auth.auth().currentUser?.uid)!)/\(timestamp)-thumbnail.jpg"
-        let (data, metadata, thumbnailRef) = prepareUploadPic(image: thumbnail, filePath: thumbnailPath)
-        thumbnailRef.putData(data, metadata: metadata) { (metadata, error) in
-            if error != nil {
-                print(error?.localizedDescription as Any)
-            } else {
-                thumbnailRef.downloadURL { (url, error) in
-                    self.thumbnailURL = (url?.absoluteString)!
-                    self.uploadFullSizeImage(image: image, timestamp: timestamp)
-                }
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCaptionView" {
+            let dvc = segue.destination as! CaptionViewController
+            dvc.imageVar = photo
+            dvc.timestamp = timestamp
         }
     }
-    
-    func uploadFullSizeImage(image: UIImage, timestamp: Int) {
-        let fullSizeImage = resizeImage(image: cropToBounds(image: image), targetSize: CGSize(width: 1024.0, height: 1024.0))
-        let fullSizePath = "\((Auth.auth().currentUser?.uid)!)/\(timestamp)-fullSize.jpg"
-        let (data, metadata, fullSizeRef) = prepareUploadPic(image: fullSizeImage, filePath: fullSizePath)
-        fullSizeRef.putData(data, metadata: metadata) { (metadata, error) in
-            if error != nil {
-                print(error?.localizedDescription as Any)
-            } else {
-                fullSizeRef.downloadURL { (url, error) in
-                    self.fullSizeURL = (url?.absoluteString)!
-                    self.updateDB(timestamp: timestamp)
-                }
-            }
-        }
-    }
-    
-    func updateDB(timestamp: Int) {
-        Firestore.firestore().collection("pics").addDocument(data: [
-            "uid": Auth.auth().currentUser?.uid as Any,
-            "fullSizeURL": self.fullSizeURL,
-            "thumbnailURL": self.thumbnailURL,
-            "timestamp": timestamp
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Pic Document successfully created")
-                self.dismiss(animated: false, completion: nil)
-            }
-        }
-    }
-    
-    @IBAction func addImageButtonTabbed(_ sender: Any) {
-        imagePickerController = UIImagePickerController()
-        imagePickerController!.delegate = self
-        imagePickerController!.sourceType = .camera
-        present(imagePickerController!, animated: true, completion: nil)
-    }
-    
 }

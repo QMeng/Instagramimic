@@ -44,27 +44,6 @@ class SignUpViewController: UIViewController, UINavigationControllerDelegate, UI
         return emailTest.evaluate(with: email)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField.tag {
-            case 1:
-                scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
-            case 2:
-                scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
-            default:
-                print("do nothing")
-        }
-        
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     // sign up button tabbed, start user registration processes
     @IBAction func signUpButtonTabbed(_ sender: Any) {
         let userEmail = emailTextField.text
