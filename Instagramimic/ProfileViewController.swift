@@ -8,15 +8,16 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import SDWebImage
 
-class UserProfileViewController: UIViewController, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ProfileViewController: UIViewController, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameField: UILabel!
     @IBOutlet weak var shortBioField: UILabel!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    var customImageFlowLayout: CustomImageFlowLayout!
+    var customImageFlowLayout: ProfileViewFlowLayout!
     var profilePicPath: String!
     var images = [ImageStruct]()
     var imagePickerController: UIImagePickerController?
@@ -26,7 +27,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        customImageFlowLayout = CustomImageFlowLayout()
+        customImageFlowLayout = ProfileViewFlowLayout()
         imageCollectionView.collectionViewLayout = customImageFlowLayout
         imageCollectionView.backgroundColor = .white
         
@@ -71,7 +72,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDataSource, U
             }
             snapshot.documentChanges.forEach { diff in
                 if (diff.type == .added) {
-                    let imageObject = ImageStruct(uid: diff.document.data()["uid"] as! String, thumbnailURL: diff.document.data()["thumbnailURL"] as! String, fullSizeURL: diff.document.data()["fullSizeURL"] as! String, timestamp: diff.document.data()["timestamp"] as! Int)
+                    let imageObject = ImageStruct(uid: diff.document.data()["uid"] as! String, thumbnailURL: diff.document.data()["thumbnailURL"] as! String, fullSizeURL: diff.document.data()["fullSizeURL"] as! String, timestamp: diff.document.data()["timestamp"] as! Int, caption: diff.document.data()["caption"] as! String)
                     self.images.insert(imageObject, at: 0)
                     self.images.sort(by: { $0.timestamp > $1.timestamp })
                 }

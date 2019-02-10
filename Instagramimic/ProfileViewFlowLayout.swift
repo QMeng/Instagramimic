@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomImageFlowLayout: UICollectionViewFlowLayout {
+class ProfileViewFlowLayout: UICollectionViewFlowLayout {
     
     override init() {
         super.init()

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class CaptionViewController: UIViewController {
 
@@ -30,6 +31,7 @@ class CaptionViewController: UIViewController {
     @IBAction func generateHashTags(_ sender: Any) {
         let image = VisionImage(image: imageVar)
         let labeler = Vision.vision().cloudLabelDetector()
+        displayLoadingOverlay(view: self)
         labeler.detect(in: image) { labels, error in
             guard error == nil, let labels = labels else {
                 print(error?.localizedDescription as Any)
@@ -51,7 +53,8 @@ class CaptionViewController: UIViewController {
             for tag in tags {
                 caption += " #" + tag
             }
-
+            
+            self.dismiss(animated: false, completion: nil)
             DispatchQueue.main.async {
                 self.captionBox.text = caption
             }
@@ -106,8 +109,8 @@ class CaptionViewController: UIViewController {
             "uid": Auth.auth().currentUser?.uid as Any,
             "fullSizeURL": self.fullSizeURL,
             "thumbnailURL": self.thumbnailURL,
-            "timestamp": timestamp,
-            "caption" : caption
+            "caption" : caption,
+            "timestamp": timestamp
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

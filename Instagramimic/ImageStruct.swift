@@ -14,11 +14,13 @@ struct ImageStruct {
     let thumbnailURL: String
     let fullSizeURL: String
     let timestamp: Int
+    let caption: String
     
-    init(uid: String, thumbnailURL: String, fullSizeURL: String, timestamp: Int) {
+    init(uid: String, thumbnailURL: String, fullSizeURL: String, timestamp: Int, caption: String) {
         self.uid = uid
         self.thumbnailURL = thumbnailURL
         self.fullSizeURL = fullSizeURL
         self.timestamp = timestamp
+        self.caption = caption
     }
 }
