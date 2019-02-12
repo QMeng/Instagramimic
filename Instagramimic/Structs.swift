@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Firebase
 
 struct ImageStruct {
     let uid: String
@@ -22,5 +21,23 @@ struct ImageStruct {
         self.fullSizeURL = fullSizeURL
         self.timestamp = timestamp
         self.caption = caption
+    }
+}
+
+struct CommentStruct {
+    let uid: String
+    let username: String
+    let profilePicURL: String
+    let picURL: String
+    let comment: String
+    let timestamp: Int
+    
+    init(uid: String, username: String, profilePicURL: String, picURL: String, comment: String, timestamp: Int) {
+        self.uid = uid
+        self.username = username
+        self.profilePicURL = profilePicURL
+        self.picURL = picURL
+        self.comment = comment
+        self.timestamp = timestamp
     }
 }

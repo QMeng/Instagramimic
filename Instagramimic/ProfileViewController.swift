@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
 import SDWebImage
 
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -23,9 +22,12 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UINav
     var imagePickerController: UIImagePickerController?
     var timestamp = Int()
     var photo = UIImage()
+    var selectedPicURL: String!
+    var selectedImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadData()
         customImageFlowLayout = ProfileViewFlowLayout()
         imageCollectionView.collectionViewLayout = customImageFlowLayout
@@ -37,6 +39,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UINav
                 let dictionary = document.data()
                 self.usernameField.text = dictionary!["username"] as? String
                 self.shortBioField.text = dictionary!["shortBio"] as? String
+                self.profilePicPath = dictionary!["profilePicURL"] as? String
                 self.profileImage!.sd_setImage(with: URL.init(string: dictionary!["profilePicURL"] as! String), placeholderImage: UIImage(named: "empty-profile"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
                 })
             } else {
@@ -99,19 +102,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UINav
     {
         let imageView = sender.view as! UIImageView
         let tag = imageView.tag
-        let url = images[tag].fullSizeURL
-        let newImageView = UIImageView()
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
-        newImageView.addGestureRecognizer(tap)
-        newImageView.sd_setImage(with: URL.init(string: url), placeholderImage: UIImage.gif(asset: "spinner"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
-        })
-        self.view.addSubview(newImageView)
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
+        selectedPicURL = images[tag].fullSizeURL
+        selectedImage = imageView.image
+        performSegue(withIdentifier: "toComments", sender: self)
     }
     
     @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
@@ -132,6 +125,12 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UINav
             let dvc = segue.destination as! CaptionViewController
             dvc.imageVar = photo
             dvc.timestamp = timestamp
+        }
+        
+        if segue.identifier == "toComments" {
+            let dvc = segue.destination as! CommentsViewController
+            dvc.photoFullURL = self.selectedPicURL
+            dvc.prevIndex = 0
         }
     }
 }

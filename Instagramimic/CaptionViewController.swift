@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
 
 class CaptionViewController: UIViewController {
 
@@ -54,8 +53,8 @@ class CaptionViewController: UIViewController {
                 caption += " #" + tag
             }
             
-            self.dismiss(animated: false, completion: nil)
             DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
                 self.captionBox.text = caption
             }
             return

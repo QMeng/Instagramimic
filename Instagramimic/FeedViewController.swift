@@ -8,23 +8,24 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
 import SDWebImage
 
 class FeedViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var feedsCollection: UICollectionView!
     
     var feedsImageFlowLayout: FeedsViewFlowLayout!
-    
     var feeds = [ImageStruct]()
+    
+    var selectedPicURL: String!
+    var selectedImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         
         feedsImageFlowLayout = FeedsViewFlowLayout()
-        feedsCollection.collectionViewLayout = feedsImageFlowLayout
-        feedsCollection.backgroundColor = .white
+        self.feedsCollection.collectionViewLayout = feedsImageFlowLayout
+        self.feedsCollection.backgroundColor = .white
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -34,7 +35,9 @@ class FeedViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let feedCell = feedsCollection.dequeueReusableCell(withReuseIdentifier: "feedCell", for: indexPath) as! FeedsCollectionViewCell
         let feed = feeds[indexPath.row]
-        feedCell.feedImageView!.sd_setImage(with: URL.init(string: feed.fullSizeURL), placeholderImage: UIImage.gif(asset: "spinner"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
+        feedCell.feedImageView.tag = indexPath.row
+        feedCell.feedImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onImageTap)))
+        feedCell.feedImageView!.sd_setImage(with: URL.init(string: feed.fullSizeURL), placeholderImage: UIImage.gif(asset: "ring-loader"), options: SDWebImageOptions(rawValue: 0), completed: {image, error, cacheType, imageURL in
             })
         return feedCell
     }
@@ -54,6 +57,23 @@ class FeedViewController: UIViewController, UICollectionViewDataSource {
                 }
             }
             self.feedsCollection.reloadData()
+        }
+    }
+    
+    @objc func onImageTap(_ sender: UITapGestureRecognizer)
+    {
+        let imageView = sender.view as! UIImageView
+        let tag = imageView.tag
+        selectedPicURL = feeds[tag].fullSizeURL
+        selectedImage = imageView.image
+        performSegue(withIdentifier: "toCommentsView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCommentsView" {
+            let dvc = segue.destination as! CommentsViewController
+            dvc.photoFullURL = self.selectedPicURL
+            dvc.prevIndex = 1
         }
     }
 }
