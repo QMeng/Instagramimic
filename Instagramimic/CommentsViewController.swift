@@ -151,9 +151,8 @@ class CommentsViewController: UIViewController, UICollectionViewDataSource, UINa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTabView" {
-            if let tabVC = segue.destination as? UITabBarController {
-                tabVC.selectedIndex = prevIndex
-            }
+            let tabVC = segue.destination as? UITabBarController
+            tabVC!.selectedIndex = self.prevIndex
         }
     }
 }

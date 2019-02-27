@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseMLVision
 
 class CaptionViewController: UIViewController {
 

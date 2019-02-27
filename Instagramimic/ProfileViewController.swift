@@ -104,13 +104,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UINav
         let tag = imageView.tag
         selectedPicURL = images[tag].fullSizeURL
         selectedImage = imageView.image
-        performSegue(withIdentifier: "toComments", sender: self)
-    }
-    
-    @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
-        sender.view?.removeFromSuperview()
+        performSegue(withIdentifier: "profileToComments", sender: self)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -127,7 +121,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UINav
             dvc.timestamp = timestamp
         }
         
-        if segue.identifier == "toComments" {
+        if segue.identifier == "profileToComments" {
             let dvc = segue.destination as! CommentsViewController
             dvc.photoFullURL = self.selectedPicURL
             dvc.prevIndex = 0
